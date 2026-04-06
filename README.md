@@ -4,7 +4,7 @@
 
 A beautifully designed, static podcast website for **Banni Mathadona** — a Kannada-English podcast about building your home: the structure, the process, the money, and the people who make it all happen.
 
-Hosted by **Anisha Katarki**, Founder of [Stile Di Vita](https://stiledivita.in).
+Hosted by **Anisha Katarki**, Founder of [StileDiVita](https://stiledivita.in).
 
 ---
 
@@ -102,7 +102,7 @@ python -m http.server 8080
 
 ## 📄 License
 
-© 2025 Stile Di Vita / Anisha Katarki. All rights reserved.
+© 2025 StileDiVita / Anisha Katarki. All rights reserved.
 
 ---
 
