@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banni Mathadona - Episode 1 Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── EPISODE NAV BAR ── */
+    .ep-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4rem;
+      height: 56px;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(26, 22, 18, 0.10);
+    }
+
+    .ep-nav-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.2s;
+    }
+
+    .ep-nav-back:hover {
+      color: var(--accent);
+    }
+
+    .ep-nav-back-arrow {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .ep-nav-back:hover .ep-nav-back-arrow {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .ep-nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .ep-nav-brand span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .ep-nav-badge {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(196, 98, 45, 0.35);
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* push hero down so nav doesn't overlap */
+    body {
+      padding-top: 56px;
+    }
+
+    @media (max-width: 768px) {
+      .ep-nav {
+        padding: 0 1.5rem;
+      }
+
+      .ep-nav-brand {
+        display: none;
+      }
+    }
+
+    :root {
+      --cream: #f5f0e8;
+      --ink: #1a1612;
+      --ink-soft: #3d3730;
+      --ink-muted: #7a7168;
+      --accent: #c4622d;
+      --accent-light: #f0d5c2;
+      --border: rgba(26, 22, 18, 0.12);
+      --border-soft: rgba(26, 22, 18, 0.07);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 4rem 4rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 85% 20%, rgba(196, 98, 45, 0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(196, 98, 45, 0.07) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .hero-lines {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .hero-lines svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-top {
+      position: absolute;
+      top: 2.5rem;
+      left: 4rem;
+      right: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .podcast-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .ep-badge {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(196, 98, 45, 0.35);
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-weight: 500;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(64px, 10vw, 130px);
+      font-weight: 500;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--ink-muted);
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .meta-div {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      right: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      z-index: 1;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--ink-muted);
+      transform-origin: left;
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+
+      0%,
+      100% {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scaleX(0.4);
+        opacity: 0.4;
+      }
+    }
+
+    /* ── FADE IN ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .fade-in:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .fade-in:nth-child(2) {
+      animation-delay: 0.22s;
+    }
+
+    .fade-in:nth-child(3) {
+      animation-delay: 0.34s;
+    }
+
+    .fade-in:nth-child(4) {
+      animation-delay: 0.46s;
+    }
+
+    .fade-in:nth-child(5) {
+      animation-delay: 0.58s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 400;
+      color: var(--accent-light);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .section-title-group {
+      flex: 1;
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    /* ── PEOPLE CARDS ── */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .person-card {
+      background: rgba(245, 240, 232, 0.6);
+      padding: 2rem 1.75rem;
+      border-right: 1.5px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .person-card:last-child {
+      border-right: none;
+    }
+
+    .person-card:hover {
+      background: rgba(255, 252, 247, 0.9);
+    }
+
+    .person-role-tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .person-role-tag::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .person-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(196, 98, 45, 0.2);
+    }
+
+    .person-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    .person-title {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .person-bio {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .person-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 88px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .tl-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .tl-row:last-child {
+      border-bottom: none;
+    }
+
+    .tl-row:hover .tl-body {
+      background: rgba(255, 252, 247, 0.7);
+    }
+
+    .tl-time {
+      width: 88px;
+      flex-shrink: 0;
+      padding: 1.5rem 0;
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .tl-dot-col {
+      width: 1px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1.75rem;
+    }
+
+    .tl-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 1.5px solid var(--accent);
+      flex-shrink: 0;
+      position: relative;
+      left: -4px;
+    }
+
+    .tl-body {
+      flex: 1;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      transition: background 0.15s;
+    }
+
+    .tl-segment-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    .tag-open {
+      background: #faeeda;
+      color: #854F0B;
+    }
+
+    .tag-blue {
+      background: #daeaf8;
+      color: #185FA5;
+    }
+
+    .tag-coral {
+      background: #f8e8e2;
+      color: #993C1D;
+    }
+
+    .tag-green {
+      background: #e5f2db;
+      color: #3B6D11;
+    }
+
+    .tag-purple {
+      background: #eeedfe;
+      color: #3C3489;
+    }
+
+    .tag-close {
+      background: #f5f0e8;
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+    }
+
+    .tl-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .tl-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .tl-who {
+      margin-top: 0.6rem;
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── QUESTIONS ── */
+    .q-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .q-tab {
+      padding: 0.9rem 1.5rem;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--ink-muted);
+      border: none;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .q-tab:hover {
+      color: var(--ink);
+    }
+
+    .q-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .q-panel {
+      display: none;
+      padding-top: 2rem;
+    }
+
+    .q-panel.active {
+      display: block;
+    }
+
+    .q-list {
+      list-style: none;
+    }
+
+    .q-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border-soft);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .q-item:last-child {
+      border-bottom: none;
+    }
+
+    .q-text {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+
+    .q-purpose {
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .q-who-chip {
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .chip-p {
+      background: #eeedfe;
+      color: #3C3489;
+    }
+
+    .chip-r {
+      background: #e1f5ee;
+      color: #085041;
+    }
+
+    .chip-both {
+      background: #faeeda;
+      color: #854F0B;
+    }
+
+    .chip-host {
+      background: #daeaf8;
+      color: #185FA5;
+    }
+
+    /* ── RAPID FIRE ── */
+    .rapid-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .rapid-item {
+      padding: 1.25rem 1.5rem;
+      background: rgba(245, 240, 232, 0.5);
+      border-bottom: 1px solid var(--border-soft);
+      border-right: 1px solid var(--border-soft);
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: background 0.15s;
+    }
+
+    .rapid-item:hover {
+      background: rgba(255, 252, 247, 0.9);
+    }
+
+    .rapid-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--accent-light);
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* ── PREP NOTES ── */
+    .prep-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .prep-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.75rem;
+      background: rgba(255, 252, 247, 0.5);
+    }
+
+    .prep-card-icon {
+      font-size: 22px;
+      margin-bottom: 1rem;
+    }
+
+    .prep-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .prep-card-text {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    .prep-card-list {
+      list-style: none;
+      margin-top: 0.75rem;
+    }
+
+    .prep-card-list li {
+      font-size: 13px;
+      color: var(--ink-soft);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .prep-card-list li::before {
+      content: '-';
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .prep-card-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .footer-brand span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ── DIVIDER ── */
+    .ornament {
+      text-align: center;
+      color: var(--accent);
+      opacity: 0.4;
+      font-size: 18px;
+      letter-spacing: 0.5em;
+      margin: 0;
+      padding: 1.5rem 0;
+    }
+
+    /* ── FLOATING HOME BUTTON ── */
+    .float-home {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 13px 22px;
+      border-radius: 40px;
+      box-shadow: 0 4px 20px rgba(26, 22, 18, 0.20);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      animation: floatIn 0.4s ease 0.3s both;
+    }
+
+    .float-home:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(196, 98, 45, 0.30);
+    }
+
+    .float-home svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .float-home {
+        bottom: 1.25rem;
+        right: 1.25rem;
+        padding: 11px 18px;
+        font-size: 11px;
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 2rem 1.5rem 3rem;
+      }
+
+      .hero-top {
+        left: 1.5rem;
+        right: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 56px;
+      }
+
+      .section {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .people-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .person-card {
+        border-right: none;
+        border-bottom: 1.5px solid var(--border);
+      }
+
+      .person-card:last-child {
+        border-bottom: none;
+      }
+
+      .timeline::before {
+        left: 60px;
+      }
+
+      .tl-time {
+        width: 60px;
+      }
+
+      .tl-body {
+        padding: 1.25rem 0.75rem 1.25rem 1.5rem;
+      }
+
+      .q-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .rapid-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prep-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .footer-note {
+        text-align: center;
+      }
+
+      .hero-meta {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .meta-div {
+        display: none;
+      }
+
+      .scroll-cue {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- EPISODE NAV -->
+  <nav class="ep-nav">
+    <a class="ep-nav-back" href="../index.html">
+      <div class="ep-nav-back-arrow">←</div>
+      All Episodes
+    </a>
+    <a class="ep-nav-brand" href="../index.html">Banni <span>Mathadona</span></a>
+    <div class="ep-nav-badge">Episode 1 - Guest Prep</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines">
+      <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="0" x2="380" y2="800" stroke="rgba(196,98,45,0.06)" stroke-width="1" />
+        <line x1="160" y1="0" x2="420" y2="800" stroke="rgba(196,98,45,0.04)" stroke-width="1" />
+        <line x1="240" y1="0" x2="10" y2="800" stroke="rgba(196,98,45,0.05)" stroke-width="1" />
+        <line x1="320" y1="0" x2="60" y2="800" stroke="rgba(196,98,45,0.03)" stroke-width="1" />
+        <circle cx="280" cy="200" r="120" fill="none" stroke="rgba(196,98,45,0.05)" stroke-width="1" />
+        <circle cx="280" cy="200" r="80" fill="none" stroke="rgba(196,98,45,0.04)" stroke-width="1" />
+        <circle cx="280" cy="200" r="40" fill="none" stroke="rgba(196,98,45,0.06)" stroke-width="1" />
+      </svg>
+    </div>
+
+    <div class="hero-top">
+      <div class="podcast-label">Banni Mathadona Podcast</div>
+      <div class="ep-badge">Episode 1 - Guest Prep</div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow fade-in">ಬನ್ನಿ ಮಾತಾಡೋಣ - Let's Talk</p>
+      <h1 class="hero-title fade-in">
+        Banni<br><em>Mathadona</em>
+      </h1>
+      <p class="hero-sub fade-in">
+        A podcast about building your home - the structure, the process, the money, and the people who make it all
+        happen. Hosted by Anisha, Founder of Stile Di Vita.
+      </p>
+      <div class="hero-meta fade-in">
+        <div class="meta-item">
+          <span class="meta-label">Episode</span>
+          <span class="meta-value">01</span>
+        </div>
+        <div class="meta-div"></div>
+        <div class="meta-item">
+          <span class="meta-label">Duration</span>
+          <span class="meta-value">~75 minutes</span>
+        </div>
+        <div class="meta-div"></div>
+        <div class="meta-item">
+          <span class="meta-label">Language</span>
+          <span class="meta-value">Kannada + English</span>
+        </div>
+        <div class="meta-div"></div>
+        <div class="meta-item">
+          <span class="meta-label">Topic</span>
+          <span class="meta-value">Structural Engineering & Construction Management</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      Scroll to prepare
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title-group">
+        <div class="section-eyebrow">The People</div>
+        <h2 class="section-title">Host & Guests</h2>
+      </div>
+    </div>
+
+    <div class="people-grid">
+
+      <div class="person-card">
+        <div class="person-role-tag">Host</div>
+        <div class="person-avatar">A</div>
+        <div class="person-name">Anisha Katarki</div>
+        <div class="person-title">Founder, Stile Di Vita</div>
+        <p class="person-bio">
+          Anisha runs Stile Di Vita, a Bangalore-based studio that works at the intersection of interiors, design, and
+          the home-building experience. Having worked with homeowners through the final stretch of their journey, she
+          brings the lens of what happens when construction decisions - good or bad - meet real life. This podcast is
+          her way of starting the conversation at the very beginning.
+        </p>
+        <div class="person-tags">
+          <span class="tag">Interior Design</span>
+          <span class="tag">Home Experience</span>
+          <span class="tag">Stile Di Vita</span>
+          <span class="tag">Bangalore</span>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-role-tag">Guest - Structural Engineering</div>
+        <div class="person-avatar">P</div>
+        <div class="person-name">Prashanth P.N.</div>
+        <div class="person-title">Co-founder & Technical Head, Kshipra Imagineers</div>
+        <p class="person-bio">
+          Nearly 20 years of structural engineering experience across offshore, industrial, and infrastructure projects
+          globally. M.Tech rank holder from SJCE Mysore. Led FPSO and complex offshore projects at L&T Hydrocarbon
+          Engineering and GE Oil & Gas, with international stints in the Netherlands and Singapore. At Kshipra
+          Imagineers, he leads structural design with a focus on precision, quality, and building the next generation of
+          engineers.
+        </p>
+        <div class="person-tags">
+          <span class="tag">Structural Engineering</span>
+          <span class="tag">Offshore Projects</span>
+          <span class="tag">Steel & Concrete Design</span>
+          <span class="tag">SJCE Rank Holder</span>
+          <span class="tag">L&T / GE Alumni</span>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-role-tag">Guest - Construction Management</div>
+        <div class="person-avatar">R</div>
+        <div class="person-name">Ranjini Ramanath</div>
+        <div class="person-title">Co-founder & Operations Head, Kshipra Imagineers</div>
+        <p class="person-bio">
+          Civil engineer and project management specialist with a rare blend of academic excellence and operational
+          leadership. NICMAR Silver Medalist and SJCE rank holder. Brings experience from CBRE, Synergy, Sidvin, and
+          IEXCEL - and has served as a lecturer, bringing a deeply educational perspective to every project. At Kshipra,
+          she drives strategy, execution, and the systems that make quality construction repeatable.
+        </p>
+        <div class="person-tags">
+          <span class="tag">Construction Management</span>
+          <span class="tag">Project Delivery</span>
+          <span class="tag">NICMAR Silver Medalist</span>
+          <span class="tag">CBRE Alumni</span>
+          <span class="tag">Operations</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-group">
+        <div class="section-eyebrow">The Flow</div>
+        <h2 class="section-title">Episode Structure</h2>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-row">
+        <div class="tl-time">0 – 5 min</div>
+        <div class="tl-dot-col">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <span class="tl-segment-tag tag-open">Cold Open</span>
+          <div class="tl-title">The Hook - Why This Podcast Exists</div>
+          <div class="tl-desc">Anisha opens with a real story - a homeowner who started construction without a
+            structural engineer and paid for it later. Sets the emotional stakes before introductions. The question that
+            anchors the whole episode: "What does it actually take to build a home right?"</div>
+          <div class="tl-who">Led by Anisha</div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">5 – 15 min</div>
+        <div class="tl-dot-col">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <span class="tl-segment-tag tag-blue">Segment 1</span>
+          <div class="tl-title">Guest Introductions - Their Journey & Why Kshipra</div>
+          <div class="tl-desc">Both guests share their story. Two rank holders from SJCE who took very different paths
+            through the corporate world before coming together. What gap did they see in Bangalore's construction space?
+            What was the thing corporate couldn't give them?</div>
+          <div class="tl-who">Prashanth + Ranjini - personal, honest, origin story</div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">15 – 30 min</div>
+        <div class="tl-dot-col">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <span class="tl-segment-tag tag-coral">Segment 2</span>
+          <div class="tl-title">The Structural Truth - What Every Homeowner Must Know</div>
+          <div class="tl-desc">Soil testing, foundation types, structural design decisions, load-bearing myths, curing,
+            steel reinforcement. Real stories from real projects. The things people skip to save money and the long-term
+            cost of those decisions. Ranjini adds the project management layer.</div>
+          <div class="tl-who">Prashanth leads - Ranjini adds operational context</div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">30 – 45 min</div>
+        <div class="tl-dot-col">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <span class="tl-segment-tag tag-green">Segment 3</span>
+          <div class="tl-title">The Process - From Plot to Possession</div>
+          <div class="tl-desc">A complete walkthrough of how a residential construction project runs. BBMP approvals,
+            BOQ, contractor selection, construction stages, site supervision, waterproofing, quality checks - the full
+            truth no one tells first-time builders. Honest, specific, Bangalore-centric.</div>
+          <div class="tl-who">Ranjini leads - Prashanth adds structural checkpoints</div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">45 – 58 min</div>
+        <div class="tl-dot-col">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <span class="tl-segment-tag tag-purple">Segment 4</span>
+          <div class="tl-title">Smart Homes & Automation - Plan It or Regret It</div>
+          <div class="tl-desc">When do you plan for smart home systems - before construction starts or after keys are
+            handed over? Conduit planning, wiring provisions, solar panels, EV charging readiness, what is actually
+            worth the investment in 2025. India's smart home market is growing at 29% CAGR - homebuilders need to think
+            ahead.</div>
+          <div class="tl-who">Both guests - Prashanth on structural provisions, Ranjini on practical ROI</div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">58 – 70 min</div>
+        <div class="tl-dot-col">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <span class="tl-segment-tag tag-blue">Segment 5</span>
+          <div class="tl-title">Financing & The Budget Reality</div>
+          <div class="tl-desc">Construction loan vs home loan. Staged disbursements. Real cost per sq ft in Bangalore
+            2025. The 15% buffer rule - is it enough? Hidden costs, cost overruns, tax benefits under Section 80C and
+            24, and the true price of choosing the cheapest contractor. Anisha shares her own perspective from the
+            interior design side.</div>
+          <div class="tl-who">Anisha leads the questions - both guests answer honestly</div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">70 – 75 min</div>
+        <div class="tl-dot-col">
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-body">
+          <span class="tl-segment-tag tag-close">Close</span>
+          <div class="tl-title">Rapid Fire + Where to Find Them</div>
+          <div class="tl-desc">High-energy rapid fire round - no thinking allowed. Guests share how listeners can reach
+            them. Anisha closes with her personal takeaway from the conversation and teases who's coming in Episode 2.
+          </div>
+          <div class="tl-who">All three - keep the energy up</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-group">
+        <div class="section-eyebrow">The Questions</div>
+        <h2 class="section-title">What We'll Cover</h2>
+      </div>
+    </div>
+
+    <div class="q-tabs" id="tabBar">
+      <button class="q-tab active" onclick="showTab('qi')">Introduction</button>
+      <button class="q-tab" onclick="showTab('qs')">Structural</button>
+      <button class="q-tab" onclick="showTab('qp')">Process</button>
+      <button class="q-tab" onclick="showTab('qa')">Automation</button>
+      <button class="q-tab" onclick="showTab('qf')">Finance</button>
+      <button class="q-tab" onclick="showTab('qr')">Rapid Fire</button>
+    </div>
+
+    <div id="qi" class="q-panel active">
+      <ul class="q-list">
+        <li class="q-item">
+          <div>
+            <div class="q-text">Both of you are rank holders from SJCE who could have built safe careers anywhere. You
+              were in multinational firms. What was the specific moment you both decided - "we are doing this together"?
+              What did you see in the Bangalore construction market that made Kshipra feel inevitable?</div>
+            <div class="q-purpose">Origin story - the question that sets the tone for everything that follows</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Prashanth - you were working on FPSOs in the Netherlands and Singapore, large-scale
+              offshore engineering at L&T and GE. That is a completely different universe from a residential plot in
+              Bangalore. Walk us through that mental shift. Did anything feel like a step down, or did it feel like a
+              completely different kind of challenge?</div>
+            <div class="q-purpose">Personal, honest, revealing - let the audience see the human behind the engineer
+            </div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Ranjini - NICMAR Silver Medalist, CBRE, Synergy. You had a strong career in construction
+              management. What was the thing that corporate couldn't give you? What did you want to build that simply
+              didn't exist in this market?</div>
+            <div class="q-purpose">Founder motivation - emotionally engaging, will resonate with the audience</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Between the two of you - one is the technical head, one is the operations head. How do
+              those roles actually play out day-to-day? Where does Prashanth end and Ranjini begin? Have you ever had a
+              genuine disagreement on a project decision, and how did you resolve it?</div>
+            <div class="q-purpose">Fun, humanizing - great chemistry moment that listeners will remember</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">What is the single most common misconception that first-time homeowners walk in with?
+              The one thing you almost always have to correct in the very first meeting?</div>
+            <div class="q-purpose">Perfect bridge into the substance of the episode</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="qs" class="q-panel">
+      <ul class="q-list">
+        <li class="q-item">
+          <div>
+            <div class="q-text">Prashanth, Bangalore specifically - red soil, rocky layers, clayey pockets, expansive
+              black cotton soil in some pockets. Can two plots 500 meters apart genuinely need completely different
+              foundation systems? How different is the structural approach across different parts of the city?</div>
+            <div class="q-purpose">Hyper-local, immediately relatable to every Bangalore listener</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">People skip soil testing to save ₹5,000 to ₹10,000 upfront. You've seen what that
+              decision costs them years later. Walk us through a real project - no names needed - where skipping soil
+              testing turned into a structural problem. What did it actually cost to fix?</div>
+            <div class="q-purpose">Real story, high impact - this is a guaranteed shareable clip</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Foundation types - isolated footing, raft foundation, pile foundation. How do you decide
+              which one to use? For a typical 30x40 Bangalore site with a G+2 structure, what is the most common choice
+              and what drives that decision?</div>
+            <div class="q-purpose">Practical education - what most homeowners google but never fully understand</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">There is a very common mindset: "my neighbor's house is standing fine, so my plot is
+              also fine." Why is this one of the most dangerous assumptions a homeowner can make? Can the soil profile
+              change dramatically within the same street?</div>
+            <div class="q-purpose">Myth-busting - strong explainer moment, very shareable</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Concrete curing - RCC slabs need 7 to 14 days of proper curing to reach designed
+              strength. Realistically, in the Bangalore construction market today, how often is this actually followed?
+              And what does a homeowner notice 5 years later when it wasn't?</div>
+            <div class="q-purpose">Actionable, safety-critical - excellent Instagram clip material</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Steel reinforcement - cover blocks, bar spacing, anchorage length. If a homeowner visits
+              their site during the slab casting phase, what are the 3 specific things they should look for to know it
+              is being done right? Things they can actually verify with their own eyes.</div>
+            <div class="q-purpose">Empowers listeners - gives them a practical checklist they can actually use</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Someone builds a G+1 house today, and 10 to 15 years later wants to add a second floor.
+              What structural provisions need to be made at the time of original construction to keep that future option
+              open? What does "future-ready" design actually mean in practice?</div>
+            <div class="q-purpose">Huge concern among Bangalore homebuilders - almost everyone thinks about this</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Ranjini - when the structural engineer's specification conflicts with what the
+              contractor says he has "always done," how do you handle that on site? Who wins, and how do you make sure
+              the homeowner doesn't get caught in the middle?</div>
+            <div class="q-purpose">Real-world tension and resolution - great storytelling moment</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="qp" class="q-panel">
+      <ul class="q-list">
+        <li class="q-item">
+          <div>
+            <div class="q-text">Ranjini, let's do a complete walkthrough. Plot registration is done. What is Step 1?
+              Take us through the full sequence - architectural drawings, BBMP approval, commencement certificate,
+              foundation, slab, finishing, occupancy certificate. What is the most common stage where things fall apart?
+            </div>
+            <div class="q-purpose">Core education segment - the most shareable clip of the entire episode</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">BBMP and BDA approvals - what does the process officially look like, and what does it
+              actually look like in practice? What are the most common causes of delays, and how long should someone
+              realistically plan for before breaking ground?</div>
+            <div class="q-purpose">Honest, Bangalore-specific - everyone wants the real answer on this</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">The Bill of Quantities - most first-time homebuilders have never heard of it. What
+              exactly is a BOQ, why is it the most important document before construction starts, and what typically
+              happens to the budget of someone who begins without one?</div>
+            <div class="q-purpose">Financial clarity - very high listener value, practical and memorable</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Contractor selection - everyone says "check their past work." But what does that
+              actually mean? What are the specific questions you ask when interviewing a contractor, and what is an
+              immediate red flag in that first conversation that tells you to walk away?</div>
+            <div class="q-purpose">Practical checklist listeners can use immediately</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Mid-construction design changes - "can we shift this wall, can we make this room
+              bigger?" What does a seemingly small change actually cost in money, time, and structural rework? Is there
+              a point in construction after which changes become genuinely dangerous?</div>
+            <div class="q-purpose">Relatable pain point - almost every homeowner has done this</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Electrical and plumbing - most homeowners think about this after the walls are already
+              up. At what exact stage should the layout be finalized? What are the most expensive mistakes that happen
+              when it is planned too late?</div>
+            <div class="q-purpose">Extremely common and costly mistake - resonates across India</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Someone with a full-time job building their own home cannot be on site every day. What
+              is the absolute minimum level of active involvement needed to protect their investment? Is hiring an
+              independent site engineer worth it?</div>
+            <div class="q-purpose">Very relatable for Bangalore's working professional audience</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Waterproofing - terrace, bathrooms, wet areas. This is the number one post-construction
+              complaint across India. When should it be done, what does a properly done job look like, and how can a
+              homeowner verify it before the finishing begins?</div>
+            <div class="q-purpose">Universal pain point - almost every homeowner has a seepage story</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Give us a real number. Not the brochure number - what does construction actually cost
+              per square foot in Bangalore in 2025 for a mid-range finish? And what are the top three things that push
+              that number significantly higher?</div>
+            <div class="q-purpose">The question every single listener is waiting for</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="qa" class="q-panel">
+      <ul class="q-list">
+        <li class="q-item">
+          <div>
+            <div class="q-text">When do clients first bring up smart home planning - before they break ground or after
+              the keys are handed over? And what is the real cost of thinking about automation too late?</div>
+            <div class="q-purpose">Natural entry point into the automation conversation</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Prashanth - in-wall speakers, automated curtain tracks, CCTV conduit runs, smart
+              lighting wiring - these need to be designed at the drawing stage. What does "automation-ready
+              construction" actually mean structurally? What gets built into walls and ceilings that cannot be added
+              later without breaking everything?</div>
+            <div class="q-purpose">Unique structural insight - nobody else will say this on a home podcast</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">India's smart home market is at ₹5,000 crore today and projected to hit ₹24,000 crore by
+              2031. Are Bangalore homebuilders actually planning for this or mostly retrofitting after construction?
+              What does retrofitting cost versus building it in from day one?</div>
+            <div class="q-purpose">Market context + practical financial comparison - surprising numbers</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">For a homeowner with an ₹80 lakh construction budget - smart lighting, security cameras,
+              smart locks, automated AC, video doorbell. Which actually give meaningful value in comfort, security, or
+              resale? What would you prioritize and what would you skip?</div>
+            <div class="q-purpose">Budget-practical - exactly what listeners are calculating in their heads</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Solar panels and rooftop PV - does the structural design need to account for the weight
+              of solar panels on the roof? At what construction stage should this be decided, and what does PM Surya
+              Ghar mean practically for someone building their own home today?</div>
+            <div class="q-purpose">Very topical, connects structural and energy worlds seamlessly</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">EV charging at home - more Bangalore families are buying EVs every month. What does an
+              EV-ready home need from Day 1? Is this purely an electrical consideration or does it have civil and
+              structural implications too?</div>
+            <div class="q-purpose">Forward-looking, 2025 relevance - strong clip potential for LinkedIn and Reels</div>
+          </div>
+          <span class="q-who-chip chip-p">Prashanth</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="qf" class="q-panel">
+      <ul class="q-list">
+        <li class="q-item">
+          <div>
+            <div class="q-text">Construction loan versus a regular home loan - most people don't know the difference.
+              Someone has bought a plot and wants to build. How should they approach the financing? What is staged
+              disbursement, and why does it matter both for cash flow and for how the bank monitors the project?</div>
+            <div class="q-purpose">Most searched topic by self-builders - foundational, high-value</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Construction loans are disbursed in stages tied to milestones - foundation, slab,
+              brickwork, finishing. What are those stages in practice? And what happens if construction is delayed -
+              does the bank start putting pressure on you?</div>
+            <div class="q-purpose">Real operational concern for anyone managing a loan during construction</div>
+          </div>
+          <span class="q-who-chip chip-r">Ranjini</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Every expert says keep a 10 to 15% buffer over your estimated budget. In real Bangalore
+              projects, how often do costs actually overrun? And what are the top three reasons the budget gets
+              exceeded? Give us honest numbers, not textbook answers.</div>
+            <div class="q-purpose">Honest, practical - builds deep trust with the audience</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Tax benefits - Section 80C for the principal and Section 24 for interest on a
+              construction loan. Most homebuilders are leaving significant money on the table. What do people need to
+              know, and are there conditions they might not be aware of - like the 5-year construction completion rule?
+            </div>
+            <div class="q-purpose">High-value financial tip that most listeners genuinely don't know</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Real scenario - total budget of ₹80 lakhs, with ₹45 lakhs already in a plot and ₹35
+              lakhs for construction. What can you realistically build in Bangalore in 2026? What size, what quality of
+              finish, and where will the compromises happen?</div>
+            <div class="q-purpose">Every listener will calculate their own version of this scenario</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">The cheapest contractor trap - you save ₹5 to ₹10 lakhs upfront and spend ₹15 to ₹20
+              lakhs fixing it over the next 5 years. What is the actual documented cost difference between a
+              well-supervised quality build and a cut-corner one? Have you seen this play out?</div>
+            <div class="q-purpose">Powerful closing message on quality - a story people will share</div>
+          </div>
+          <span class="q-who-chip chip-both">Both</span>
+        </li>
+        <li class="q-item">
+          <div>
+            <div class="q-text">Anisha's angle - as someone who works in interiors and finishes, when do homeowners
+              typically come to you? Is it usually too late? And looking back, what decisions made at the structural and
+              construction stage would have saved them money on interiors and made your job easier?</div>
+            <div class="q-purpose">Connects Anisha's world beautifully - makes her expertise part of the conversation
+            </div>
+          </div>
+          <span class="q-who-chip chip-host">Host angle</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="qr" class="q-panel">
+      <div class="rapid-grid">
+        <div class="rapid-item">
+          <div class="rapid-num">01</div>
+          <div>One thing you wish every homeowner knew before they bought their plot.</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">02</div>
+          <div>RCC construction or steel frame - for a Bangalore G+2, which would you choose?</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">03</div>
+          <div>If you had an extra ₹1 lakh to spend anywhere in a construction project, where does it go?</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">04</div>
+          <div>One thing you would never compromise on regardless of budget pressure.</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">05</div>
+          <div>Most ignored by homeowners - waterproofing, ventilation, or structural design?</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">06</div>
+          <div>Best smart home upgrade for under ₹50,000.</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">07</div>
+          <div>Biggest red flag when you are interviewing a contractor for the first time.</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">08</div>
+          <div>The BBMP approval process - describe it in one honest sentence.</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">09</div>
+          <div>Five years from now - what will be different about how homes are built in India?</div>
+        </div>
+        <div class="rapid-item">
+          <div class="rapid-num">10</div>
+          <div>One word that describes what building a home means to you.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PREP NOTES -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title-group">
+        <div class="section-eyebrow">Before You Arrive</div>
+        <h2 class="section-title">How to Prepare</h2>
+      </div>
+    </div>
+
+    <div class="prep-grid">
+      <div class="prep-card">
+        <div class="prep-card-icon">◈</div>
+        <div class="prep-card-title">Have one real story ready</div>
+        <p class="prep-card-text">The questions that will get the most listener traction are the ones backed by a real
+          project - a real problem someone faced, a real cost they paid. Think of 2 to 3 stories from your actual work
+          at Kshipra that you can share comfortably (names not required). The best ones involve a mistake that was made
+          and what it cost.</p>
+      </div>
+      <div class="prep-card">
+        <div class="prep-card-icon">◈</div>
+        <div class="prep-card-title">Think in real Bangalore numbers</div>
+        <p class="prep-card-text">The audience is Bangalore homebuilders. They want real numbers - actual cost per sq
+          ft, real approval timelines, real budget overruns. The more specific and honest, the more the conversation
+          will resonate. No need to hedge with "it depends" alone - give them a range and the factors that move it.</p>
+      </div>
+      <div class="prep-card">
+        <div class="prep-card-icon">◈</div>
+        <div class="prep-card-title">Your unique angle</div>
+        <p class="prep-card-text">Prashanth - you have seen construction from the offshore global scale down to
+          Bangalore residential. That contrast is powerful. Lean into it when it's relevant. Ranjini - your NICMAR
+          background and academic experience means you think in systems and frameworks. Use that to give listeners
+          tools, not just information.</p>
+      </div>
+      <div class="prep-card">
+        <div class="prep-card-icon">◈</div>
+        <div class="prep-card-title">The format</div>
+        <ul class="prep-card-list">
+          <li>Recorded in-person - conversational, not formal</li>
+          <li>The questions are a guide, not a script - go wherever the conversation takes you</li>
+          <li>Speak naturally - this is for a real audience, not a lecture</li>
+          <li>Disagreements or pushback between you both make for great radio - do not avoid them</li>
+          <li>Duration is approximately 75 minutes total</li>
+          <li>Kannada and English mix - whatever feels natural to you in the moment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="ornament">- ✦ -</div>
+
+  <footer class="footer">
+    <a class="footer-brand" href="../index.html" style="text-decoration:none;">Banni <span>Mathadona</span></a>
+    <div class="footer-note">
+      Episode 1 Guest Prep Sheet<br>
+      Hosted by Anisha · Stile Di Vita · Bangalore
+    </div>
+  </footer>
+
+  <!-- FLOATING HOME BUTTON -->
+  <a class="float-home" href="../index.html">
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 1L1 7.5V15h5v-4h4v4h5V7.5L8 1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+    </svg>
+    Home
+  </a>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.q-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.q-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      const map = { qi: 0, qs: 1, qp: 2, qa: 3, qf: 4, qr: 5 };
+      document.querySelectorAll('.q-tab')[map[id]].classList.add('active');
+    }
+  </script>
+</body>
+
+</html>

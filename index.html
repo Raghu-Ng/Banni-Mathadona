@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banni Mathadona - The Podcast</title>
+  <meta name="description"
+    content="Banni Mathadona is a Kannada-English podcast about building your home - the structure, the process, the money, and the people who make it happen. Hosted by Anisha, Founder of Stile Di Vita.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --cream: #f5f0e8;
+      --cream-deep: #ede7da;
+      --ink: #1a1612;
+      --ink-soft: #3d3730;
+      --ink-muted: #7a7168;
+      --accent: #c4622d;
+      --accent-light: #f0d5c2;
+      --accent-dim: rgba(196, 98, 45, 0.12);
+      --border: rgba(26, 22, 18, 0.12);
+      --border-soft: rgba(26, 22, 18, 0.07);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 4rem 4.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 50% at 80% 15%, rgba(196, 98, 45, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 55% at 15% 85%, rgba(196, 98, 45, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 40% at 50% 50%, rgba(245, 240, 232, 0) 0%, transparent 100%);
+      z-index: 0;
+    }
+
+    /* diagonal geometry lines */
+    .hero-lines {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-lines svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* nav bar */
+    .hero-nav {
+      position: absolute;
+      top: 2.5rem;
+      left: 4rem;
+      right: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .nav-tag {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    /* hero content */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 11vw, 140px);
+      font-weight: 500;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 15.5px;
+      color: var(--ink-muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .meta-div {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+    }
+
+    /* scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 2.25rem;
+      right: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      z-index: 1;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--ink-muted);
+      transform-origin: left;
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+
+      0%,
+      100% {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scaleX(0.4);
+        opacity: 0.4;
+      }
+    }
+
+    /* ── FADE-IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .fade-in:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .fade-in:nth-child(2) {
+      animation-delay: 0.22s;
+    }
+
+    .fade-in:nth-child(3) {
+      animation-delay: 0.34s;
+    }
+
+    .fade-in:nth-child(4) {
+      animation-delay: 0.46s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      padding: 4rem 4rem;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .about-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-body {
+      font-size: 14.5px;
+      color: var(--ink-muted);
+      line-height: 1.75;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .stat-cell {
+      padding: 2rem 1.75rem;
+      background: rgba(245, 240, 232, 0.6);
+      border-right: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .stat-cell:nth-child(even) {
+      border-right: none;
+    }
+
+    .stat-cell:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-num span {
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    /* ── HOST STRIP ── */
+    .host-strip {
+      padding: 3.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      background: rgba(240, 213, 194, 0.08);
+    }
+
+    .host-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: var(--accent);
+      border: 1px solid rgba(196, 98, 45, 0.25);
+      flex-shrink: 0;
+    }
+
+    .host-info {
+      flex: 1;
+    }
+
+    .host-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .host-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 3px;
+      line-height: 1.1;
+    }
+
+    .host-title {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .host-quote {
+      max-width: 520px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      font-style: italic;
+      line-height: 1.65;
+      border-left: 2px solid var(--accent-light);
+      padding-left: 1.25rem;
+    }
+
+    /* ── EPISODES SECTION ── */
+    .episodes-section {
+      padding: 5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 400;
+      color: var(--accent-light);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .section-title-group {
+      flex: 1;
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    /* episodes grid */
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5px;
+      border: 1.5px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    /* individual episode card */
+    .ep-card {
+      background: rgba(245, 240, 232, 0.55);
+      padding: 2.25rem 2rem;
+      border-right: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ep-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .ep-card:hover {
+      background: rgba(255, 252, 247, 0.95);
+    }
+
+    .ep-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* "coming soon" styling */
+    .ep-card.coming-soon {
+      opacity: 0.55;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .ep-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ep-number::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(196, 98, 45, 0.2);
+      max-width: 40px;
+    }
+
+    .ep-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .ep-guests {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    .ep-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .ep-meta-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .ep-tag {
+      font-size: 10px;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .ep-duration {
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-left: auto;
+      letter-spacing: 0.04em;
+    }
+
+    .ep-status-badge {
+      font-size: 10px;
+      padding: 3px 11px;
+      border-radius: 20px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .badge-live {
+      background: #e5f2db;
+      color: #3B6D11;
+    }
+
+    .badge-coming {
+      background: var(--border-soft);
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+    }
+
+    /* arrow indicator on live cards */
+    .ep-arrow {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-muted);
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    .ep-card:hover .ep-arrow {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    /* ── ORNAMENT ── */
+    .ornament {
+      text-align: center;
+      color: var(--accent);
+      opacity: 0.4;
+      font-size: 18px;
+      letter-spacing: 0.5em;
+      margin: 0;
+      padding: 1.5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .footer-brand span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .about-strip {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 2rem 1.5rem 3rem;
+      }
+
+      .hero-nav {
+        left: 1.5rem;
+        right: 1.5rem;
+        top: 1.75rem;
+      }
+
+      .scroll-cue {
+        display: none;
+      }
+
+      .hero-meta {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .meta-div {
+        display: none;
+      }
+
+      .about-strip {
+        padding: 3rem 1.5rem;
+      }
+
+      .host-strip {
+        padding: 2.5rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .host-quote {
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid var(--accent-light);
+        padding-top: 1rem;
+      }
+
+      .episodes-section {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .episodes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+      }
+
+      .footer-note {
+        text-align: center;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-lines">
+      <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="0" x2="380" y2="800" stroke="rgba(196,98,45,0.06)" stroke-width="1" />
+        <line x1="160" y1="0" x2="420" y2="800" stroke="rgba(196,98,45,0.04)" stroke-width="1" />
+        <line x1="240" y1="0" x2="10" y2="800" stroke="rgba(196,98,45,0.05)" stroke-width="1" />
+        <line x1="320" y1="0" x2="60" y2="800" stroke="rgba(196,98,45,0.03)" stroke-width="1" />
+        <circle cx="300" cy="180" r="160" fill="none" stroke="rgba(196,98,45,0.05)" stroke-width="1" />
+        <circle cx="300" cy="180" r="110" fill="none" stroke="rgba(196,98,45,0.04)" stroke-width="1" />
+        <circle cx="300" cy="180" r="60" fill="none" stroke="rgba(196,98,45,0.06)" stroke-width="1" />
+      </svg>
+    </div>
+
+    <nav class="hero-nav">
+      <a class="nav-logo" href="index.html">Banni <span>Mathadona</span></a>
+      <div class="nav-tag">ಬನ್ನಿ ಮಾತಾಡೋಣ</div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow fade-in">ಬನ್ನಿ ಮಾತಾಡೋಣ - Let's Talk</p>
+      <h1 class="hero-title fade-in">
+        Banni<br><em>Mathadona</em>
+      </h1>
+      <p class="hero-sub fade-in">
+        A podcast about building your home - the structure, the process, the money, and the people who make it all
+        happen. Hosted by Anisha, Founder of Stile Di Vita.
+      </p>
+      <div class="hero-meta fade-in">
+        <div class="meta-item">
+          <span class="meta-label">Language</span>
+          <span class="meta-value">Kannada + English</span>
+        </div>
+        <div class="meta-div"></div>
+        <div class="meta-item">
+          <span class="meta-label">Audience</span>
+          <span class="meta-value">Bangalore Homebuilders</span>
+        </div>
+        <div class="meta-div"></div>
+        <div class="meta-item">
+          <span class="meta-label">Hosted by</span>
+          <span class="meta-value">Anisha Katarki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      All Episodes
+    </div>
+  </section>
+
+  <!-- ── ABOUT STRIP ── -->
+  <section class="about-strip">
+    <div>
+      <div class="about-eyebrow">About the Podcast</div>
+      <h2 class="about-heading">Real conversations<br>about <em>building right</em></h2>
+      <p class="about-body">
+        Banni Mathadona brings together the experts you wish you'd spoken to before breaking ground - structural
+        engineers, construction managers, interior designers, and finance specialists - all talking in the language of
+        real Bangalore homebuilders.
+        <br><br>
+        No jargon. No scripts. Just honest, specific, practical knowledge for anyone who's about to build, currently
+        building, or realising they should have asked more questions before building.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-cell">
+        <div class="stat-num">75<span>+</span></div>
+        <div class="stat-label">Minutes per Episode</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">2<span>+</span></div>
+        <div class="stat-label">Expert Guests</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Kan<span>/</span>Eng</div>
+        <div class="stat-label">Language: Kannada + English</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Truth &amp; trust</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOST STRIP ── -->
+  <div class="host-strip">
+    <div class="host-avatar">A</div>
+    <div class="host-info">
+      <div class="host-label">Host</div>
+      <div class="host-name">Anisha Katarki</div>
+      <div class="host-title">Founder, Stile Di Vita · Bangalore</div>
+    </div>
+    <blockquote class="host-quote">
+      "Having worked with homeowners through the final stretch of their journey, I started this podcast to have the
+      conversations that should have happened at the very beginning."
+    </blockquote>
+  </div>
+
+  <!-- ── EPISODES ── -->
+  <section class="episodes-section" id="episodes">
+    <div class="section-header">
+      <div class="section-num">EP</div>
+      <div class="section-title-group">
+        <div class="section-eyebrow">All Episodes</div>
+        <h2 class="section-title">Every Conversation</h2>
+      </div>
+    </div>
+
+    <div class="episodes-grid" id="episodesGrid">
+
+      <!-- Episode 1 - LIVE -->
+      <a class="ep-card" href="episodes/episode-1.html" id="ep-01">
+        <div class="ep-arrow">↗</div>
+        <div class="ep-number">Episode 01</div>
+        <div class="ep-title">Structural Engineering &amp; Construction Management</div>
+        <div class="ep-guests">Prashanth P.N. &amp; Ranjini Ramanath - Kshipra Imagineers</div>
+        <p class="ep-desc">
+          Everything a first-time homebuilder needs to know - from soil testing and foundations to BBMP approvals, smart
+          home planning, and the real cost of construction in Bangalore 2025.
+        </p>
+        <div class="ep-meta-row">
+          <span class="ep-status-badge badge-live">Live</span>
+          <span class="ep-tag">Structural</span>
+          <span class="ep-tag">Construction Mgmt</span>
+          <span class="ep-duration">~75 min</span>
+        </div>
+      </a>
+
+      <!-- Episode 2 - Coming Soon -->
+      <a class="ep-card coming-soon" href="episodes/episode-2.html" id="ep-02">
+        <div class="ep-number">Episode 02</div>
+        <div class="ep-title">Coming Soon</div>
+        <div class="ep-guests">Guest TBA</div>
+        <p class="ep-desc">
+          The next deep conversation for Bangalore homebuilders. Stay tuned.
+        </p>
+        <div class="ep-meta-row">
+          <span class="ep-status-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <!-- Episode 3 - Coming Soon -->
+      <a class="ep-card coming-soon" href="episodes/episode-3.html" id="ep-03">
+        <div class="ep-number">Episode 03</div>
+        <div class="ep-title">Coming Soon</div>
+        <div class="ep-guests">Guest TBA</div>
+        <p class="ep-desc">
+          Another expert, another essential conversation about building your home right.
+        </p>
+        <div class="ep-meta-row">
+          <span class="ep-status-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <div class="ornament">- ✦ -</div>
+  <footer class="footer">
+    <div class="footer-brand">Banni <span>Mathadona</span></div>
+    <div class="footer-note">
+      A Stile Di Vita Production<br>
+      Hosted by Anisha Katarki · Bangalore
+    </div>
+  </footer>
+
+</body>
+
+</html>
